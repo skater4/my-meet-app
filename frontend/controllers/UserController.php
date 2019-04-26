@@ -240,8 +240,8 @@ class UserController extends \yii\web\Controller
         $view = $this->getView();
         //PrivateMessPoolingAsset::register($view);
         $view->registerJs('$(document).ready(function(){$(\'.contact\').click();})', View::POS_READY);
-        $directory = Yii::getAlias('@web/img/activities/detailed') . DIRECTORY_SEPARATOR . $id . DIRECTORY_SEPARATOR;
-        $thumbs_directory = Yii::getAlias('@web/img/activities/thumbs') . DIRECTORY_SEPARATOR . $id . DIRECTORY_SEPARATOR;
+        $directory = Yii::getAlias('@web/img/users/detailed') . DIRECTORY_SEPARATOR . $id . DIRECTORY_SEPARATOR;
+        $thumbs_directory = Yii::getAlias('@web/img/users/thumbs') . DIRECTORY_SEPARATOR . $id . DIRECTORY_SEPARATOR;
         $user = User::find()->where(['id' => $id])->one();
         if (empty($user)) throw new NotFoundHttpException(Yii::t('common', 'Пользователь не найден'));
         $photos_model = new UserPhotos();

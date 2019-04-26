@@ -79,7 +79,7 @@ class UserPhotos extends \yii\db\ActiveRecord
     {
         $avatar = static::find()->where(['user_id' => $user_id, 'type' => "M"])->one();
         if (!empty($avatar)) $avatar = $avatar->thumbnail_path;
-        else $avatar = rl::to('@app/web/img/no_image.png');
+        else $avatar = Yii::getAlias('@web/img/no_image.png');
 
         return $avatar;
     }
