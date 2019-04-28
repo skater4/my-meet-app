@@ -2,6 +2,7 @@
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\jui\DatePicker;
 use app\models\Countries;
 use app\models\ActivityCategories;
 ?>
@@ -38,6 +39,7 @@ use app\models\ActivityCategories;
         <?= $form->field($model, 'date_from')->widget(\yii\jui\DatePicker::class, [
             'language' => Yii::$app->language,
             'dateFormat' => 'dd.MM.yyyy',
+            'options' => ['class' => 'form-control']
         ]) ?>
 
 

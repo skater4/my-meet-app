@@ -1,6 +1,12 @@
 Yii Framework 2 debug extension Change Log
 ==========================================
 
+2.1.2 April 23, 2019
+--------------------
+
+- Bug: ⚠️ in MailPanel was not a string (samdark)
+
+
 2.1.1 March 30, 2019
 --------------------
 
