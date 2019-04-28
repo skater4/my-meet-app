@@ -78,7 +78,7 @@ class SignupForm extends Model
     public function attributeLabels()
     {
         return [
-            'username' => Yii::t('common', 'Имя пользователя'),
+            'username' => Yii::t('common', 'Логин'),
             'password' => Yii::t('common', 'Пароль'),
         ];
     }

@@ -93,4 +93,5 @@ return [
     'Не пришло письмо на почту?' => 'Didn\'t received email?',
     'Выслать заново' => 'Resend',
     'Запомнить меня' => 'Remember me',
+    'Логин' => 'Login',
 ];
