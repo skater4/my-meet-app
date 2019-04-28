@@ -8,11 +8,9 @@ use app\models\Countries;
 <p><b><?=Yii::t('common', 'Дата рождения');?></b></p>
 <p><?=date("d.m.Y", $model->birthday)?>
 <hr>
-<?if (!empty($model->sex)):?>
 <p><b><?=Yii::t('common', 'Пол');?></b></p>
 <p><?=$model->genders[$model->sex]?>
 <hr>
-<?endif;?>
 <p><b><?=Yii::t('common', 'Телефон');?></b></p>
 <p><?=$model->phone?>
 <hr>
