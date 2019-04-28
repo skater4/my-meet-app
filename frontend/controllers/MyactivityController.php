@@ -54,6 +54,13 @@ class MyactivityController extends \yii\web\Controller
 
     public function actionIndex()
     {
+        $user = User::find()->where(['id' => Yii::$app->user->id])->one();
+        if (empty($user->firstname))
+        {
+            Yii::$app->session->setFlash('error', Yii::t('common', 'Сначала заполните свои данные'));
+            return Yii::$app->getResponse()->redirect(['user/update']);
+        }
+
         $condition = [];
         if (!empty(Yii::$app->request->get()['Activity']['city_id'])) $city_id = Yii::$app->request->get()['Activity']['city_id'];
         //elseif (!empty(Yii::$app->request->get()['city_id'])) $city_id = Yii::$app->request->get()['city_id'];

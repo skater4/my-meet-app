@@ -7,6 +7,7 @@ use yii\data\Pagination;
 use app\models\Activity;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
+use common\models\User;
 
 class MyparticipationController extends \yii\web\Controller
 {
@@ -43,6 +44,12 @@ class MyparticipationController extends \yii\web\Controller
 
     public function actionIndex()
     {
+        $user = User::find()->where(['id' => Yii::$app->user->id])->one();
+        if (empty($user->firstname))
+        {
+            Yii::$app->session->setFlash('error', Yii::t('common', 'Сначала заполните свои данные'));
+            return Yii::$app->getResponse()->redirect(['user/update']);
+        }
         $activities = Activity::find()->where(['participants.status' => 'A', 'participants.user_id' => Yii::$app->user->id])->leftJoin('participants', 'activities.id = participants.activity_id');
 
         $countQuery = clone $activities;

@@ -95,4 +95,5 @@ return [
     'Запомнить меня' => 'Remember me',
     'Логин' => 'Login',
     'Отменено' => 'Canceled',
+    'Сначала заполните свои данные' => 'Fill your data first',
 ];

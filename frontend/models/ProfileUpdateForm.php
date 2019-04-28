@@ -70,7 +70,7 @@ class ProfileUpdateForm extends Model
     public function rules()
     {
         return [
-            [['firstname', 'lastname', 'birthday', 'sex', 'country', 'city_id', 'phone', 'relationship', 'job', 'activity', 'interests', 'study'], 'required'],
+            [['firstname', 'lastname', 'birthday', 'sex', 'country', 'city_id', 'relationship'], 'required'],
             [['phone', 'relationship', 'job', 'activity', 'interests', 'study'], 'string'],
             [['firstname', 'lastname'], 'string', 'max' => 50],
             [['city_id'], 'integer'],
