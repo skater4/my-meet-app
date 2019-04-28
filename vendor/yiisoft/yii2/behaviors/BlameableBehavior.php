@@ -108,8 +108,6 @@ class BlameableBehavior extends AttributeBehavior
             }
 
             return $userId;
-        } elseif ($this->value === null) {
-            return $this->getDefaultValue($event);
         }
 
         return parent::getValue($event);

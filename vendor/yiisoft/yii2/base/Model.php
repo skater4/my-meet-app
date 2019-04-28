@@ -863,6 +863,7 @@ class Model extends Component implements StaticInstanceInterface, IteratorAggreg
     public function load($data, $formName = null)
     {
         $scope = $formName === null ? $this->formName() : $formName;
+
         if ($scope === '' && !empty($data)) {
             $this->setAttributes($data);
 
@@ -872,7 +873,6 @@ class Model extends Component implements StaticInstanceInterface, IteratorAggreg
 
             return true;
         }
-
         return false;
     }
 
