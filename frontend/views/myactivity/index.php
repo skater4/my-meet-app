@@ -100,9 +100,6 @@ echo "<div class='row'>";?>
                                     $status = Yii::t('common', 'Активно');
                                     break;
                                 case "D":
-                                    $status = Yii::t('common', 'Отключено');
-                                    break;
-                                case "C":
                                     $status = Yii::t('common', 'Отменено');
                                     break;
                             }

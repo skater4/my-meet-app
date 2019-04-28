@@ -34,15 +34,17 @@ use app\models\ActivityCategories;
         <?= $form->field($model, 'location')->textarea(['rows' => 3]) ?>
         <?= $form->field($model, 'contacts')->textarea(['rows' => 3]) ?>
 
+        <?= $form->field($model, 'date_from')->widget(\kartik\datetime\DateTimePicker::class, [
+            //'value' => date('dd.mm.yyyy', time()),
+            'options' => ['placeholder' => 'Select issue date ...'],
+            'pluginOptions' => [
+                'format' => 'dd.mm.yyyy hh:ii',
+                'autoclose' => true,
+                'todayHighlight' => true
+            ],
+            'attribute' => 'date_from',
 
-
-        <?= $form->field($model, 'date_from')->widget(\yii\jui\DatePicker::class, [
-            'language' => Yii::$app->language,
-            'dateFormat' => 'dd.MM.yyyy',
-            'options' => ['class' => 'form-control']
         ]) ?>
-
-
 
         <?= $form->field($model, 'date_to')->widget(\kartik\datetime\DateTimePicker::class, [
             //'value' => date('dd.mm.yyyy', time()),

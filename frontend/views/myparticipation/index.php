@@ -24,6 +24,7 @@ $i = 1;
                         <img class="card-img-top" src="<?=$image?>">
                     </a>
                     <div class="card-body">
+                        <h5 class="card-title"><?if ($activity->status == "D") echo "<b>" . Yii::t('common', 'Отменено') . "</b>"?></h5>
                         <h5 class="card-title"><?=$activity->name?></h5>
                         <p class="card-text"><?=$activity->description?></p>
                         <p class="card-text"><?=Yii::t('common', 'Начало')?> <?=date('d.m.Y H:i:s', $activity->date_from)?></p>
