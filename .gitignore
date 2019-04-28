@@ -1,4 +1,5 @@
-/frontend/web/img/
+/frontend/web/img/activities/
+/frontend/web/img/users/
 /frontend/web/assets/
 # yii console commands
 /yii
