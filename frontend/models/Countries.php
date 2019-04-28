@@ -59,7 +59,7 @@ class Countries extends ActiveRecord
         $res = [];
         $field = 'country';
         if (Yii::$app->language == 'en') $field .= '_en';
-        $countries = Yii::$app->db->createCommand("SELECT id, country, country_en FROM countries group by $field order by $field")->queryAll();
+        $countries = Yii::$app->db->createCommand("SELECT id, country, country_en FROM countries where country = 'Россия' group by $field order by $field")->queryAll();
         foreach($countries as $country) {
             $res[$country['country']] = $country[$field];
         }
