@@ -68,6 +68,12 @@ echo "<div class='row'>";?>
             'attribute' => 'date_to',
 
         ]) ?>
+        <div class="form-check">
+            <?=Html::hiddenInput('just_active', 'N')?>
+            <label class="control-label" for="just_active"><?=Yii::t('common', 'Только активные')?></label>
+            <?=Html::checkbox('just_active', !empty($_GET['just_active']) && $_GET['just_active'] == "Y", ['value' => "Y", 'class' => 'form-check-input', 'id' => 'just_active'])?>
+        </div>
+
         <div class="form-group">
             <?= Html::submitButton(Yii::t('common', 'Поиск'), ['class' => 'btn btn-primary']) ?>
             <a class="btn btn-primary" href="<?=Url::to(['/activities/index', 'page' => 1])?>"><?=Yii::t('common', 'Сбросить')?></a>
@@ -80,7 +86,7 @@ echo "<div class='row'>";?>
             <?php
             $main_image = ActivityPhotos::getMainImage($activity->id);
             if (!empty($main_image)) $image = $main_image->thumbnail_path;
-            else $image = Url::to('@app/web/img/no_image.png');
+            else $image = Yii::getAlias('@web/img/no_image.png');
             if ($i == 1) echo '<div class="row">';
             ?>
             <div class='col-lg-4 activity-item'>
@@ -89,6 +95,7 @@ echo "<div class='row'>";?>
                         <img class="card-img-top" src="<?=$image?>">
                     </a>
                     <div class="card-body">
+                        <h5 class="card-title"><?if ($activity->status == "D") echo "<b>" . Yii::t('common', 'Отменено') . "</b>"?></h5>
                         <h5 class="card-title"><?=$activity->name?></h5>
                         <p class="card-text"><?=$activity->description?></p>
                         <p class="card-text"><?=Yii::t('common', 'Начало')?> <?=$activity->date_from?></p>

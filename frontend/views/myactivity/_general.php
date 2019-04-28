@@ -2,7 +2,6 @@
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use kartik\datetime\DateTimePicker;
 use app\models\Countries;
 use app\models\ActivityCategories;
 ?>
@@ -33,16 +32,15 @@ use app\models\ActivityCategories;
         ?>
         <?= $form->field($model, 'location')->textarea(['rows' => 3]) ?>
         <?= $form->field($model, 'contacts')->textarea(['rows' => 3]) ?>
-        <?= $form->field($model, 'date_from')->widget(\kartik\datetime\DateTimePicker::class, [
-            //'value' => date('dd.mm.yyyy', time()),
-            'options' => ['placeholder' => 'Select issue date ...'],
-            'pluginOptions' => [
-                'format' => 'dd.mm.yyyy hh:ii',
-                'todayHighlight' => true
-            ],
-            'attribute' => 'date_from',
 
+
+
+        <?= $form->field($model, 'date_from')->widget(\yii\jui\DatePicker::class, [
+            'language' => Yii::$app->language,
+            'dateFormat' => 'dd.MM.yyyy',
         ]) ?>
+
+
 
         <?= $form->field($model, 'date_to')->widget(\kartik\datetime\DateTimePicker::class, [
             //'value' => date('dd.mm.yyyy', time()),
@@ -58,7 +56,7 @@ use app\models\ActivityCategories;
         <?= $form->field($model, 'max_users') ?>
         <?= $form->field($model, 'status')->radioList([
                 'A' => Yii::t('common', 'Активно'),
-                'D' => Yii::t('common', 'Отключено'),
+                'D' => Yii::t('common', 'Отменено'),
         ]) ?>
 
         <div class="form-group">

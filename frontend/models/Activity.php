@@ -51,7 +51,7 @@ class Activity extends \yii\db\ActiveRecord
             [['user_id', 'max_users', 'city_id', 'category_id', 'created'], 'integer'],
         ];
         return [
-            [['user_id', 'name', 'description', 'location', 'contacts', 'date_from', 'date_to', 'max_users', 'status', 'city_id', 'country', 'category_id', 'created'], 'required'],
+            [['user_id', 'name', 'description', 'location', 'contacts', 'date_from', 'date_to', 'status', 'city_id', 'country', 'category_id', 'created'], 'required'],
             [['name', 'description', 'location', 'contacts', 'status', 'country'], 'string'],
             [['user_id', 'max_users', 'city_id', 'category_id', 'created'], 'integer'],
         ];

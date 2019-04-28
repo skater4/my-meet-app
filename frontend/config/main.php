@@ -44,7 +44,7 @@ return [
             //в качестве аргумента передается id пользователя
             'getLogo' => function($user_id) {
                 $avatar = UserPhotos::getAvatar($user_id);
-                if (empty($avatar)) $avatar = 'frontend/web/img/no_image.png';
+                if (empty($avatar)) $avatar = Yii::getAlias('@web/img/no_image.png');
                 else $avatar = $avatar->thumbnail_path;
                 return $avatar;
             },

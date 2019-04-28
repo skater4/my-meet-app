@@ -3,6 +3,7 @@ use app\models\Countries;
 use dosamigos\gallery\Gallery;
 use app\models\ActivityCategories;
 use yii\helpers\Url;
+use yii\helpers\Html;
 ?>
 
 <div class="row">
@@ -39,7 +40,7 @@ use yii\helpers\Url;
             <a href="<?=Url::to(['user/view', 'id' => $user->id])?>">
                 <div class="col-lg-2">
                     <?php
-                    if (empty($user->avatar->thumbnail_path)) $image = '/frontend/web/img/no_image.png';
+                    if (empty($user->avatar->thumbnail_path)) $image = Yii::getAlias('@web/img/no_image.png');
                     else $image = $user->avatar->thumbnail_path;
                     ?>
                     <img src="<?=$image?>" style="max-width: 100px;max-height: 100px;">

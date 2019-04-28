@@ -13,7 +13,7 @@ use yii\helpers\Url;
                 <a href="<?=Url::to(['user/view', 'id' => $participant->user->id])?>">
                     <div class="col-lg-1">
                         <?php
-                        if (empty($participant->avatar->thumbnail_path)) $image = '/frontend/web/img/no_image.png';
+                        if (empty($participant->avatar->thumbnail_path)) $image = Yii::getAlias('@web/img/no_image.png');
                         else $image = $participant->avatar->thumbnail_path;
                         ?>
                         <img src="<?=$image?>" class="part-avtr">

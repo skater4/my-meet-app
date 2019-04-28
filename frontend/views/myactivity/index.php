@@ -80,7 +80,7 @@ echo "<div class='row'>";?>
             <?php
             $main_image = ActivityPhotos::getMainImage($activity->id);
             if (!empty($main_image)) $image = $main_image->thumbnail_path;
-            else $image = Url::to('@app/web/img/no_image.png');
+            else $image = Yii::getAlias('@web/img/no_image.png');
             if ($i == 1) echo '<div class="row">';
             ?>
             <div class='col-lg-4 activity-item'>
@@ -97,10 +97,13 @@ echo "<div class='row'>";?>
                             switch ($activity->status)
                             {
                                 case "A":
-                                    $status = "Активно";
+                                    $status = Yii::t('common', 'Активно');
                                     break;
                                 case "D":
-                                    $status = "Отключено";
+                                    $status = Yii::t('common', 'Отключено');
+                                    break;
+                                case "C":
+                                    $status = Yii::t('common', 'Отменено');
                                     break;
                             }
                             echo Yii::t('common', $status)

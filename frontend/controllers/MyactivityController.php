@@ -58,7 +58,7 @@ class MyactivityController extends \yii\web\Controller
         if (!empty(Yii::$app->request->get()['Activity']['city_id'])) $city_id = Yii::$app->request->get()['Activity']['city_id'];
         //elseif (!empty(Yii::$app->request->get()['city_id'])) $city_id = Yii::$app->request->get()['city_id'];
         if (!empty($city_id)) $condition['city_id'] = $city_id;
-        $condition['status'] = "A";
+        //$condition['status'] = "A";
         if (!empty(Yii::$app->request->get()['Activity'])) $_cond = Yii::$app->request->get()['Activity'];
         $query = Activity::find()->where($condition);
         if (!empty($_cond['name'])) $query = $query->andWhere(['like', 'name', $_cond['name']]);
