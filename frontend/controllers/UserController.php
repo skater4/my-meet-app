@@ -38,6 +38,11 @@ class UserController extends \yii\web\Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
+                        'actions' => ['login-as'],
+                        'allow' => true,
+                        'roles' => ['?'],
+                    ],
+                    [
                         'allow' => false,
                         'roles' => ['?'],
                     ],
@@ -56,6 +61,14 @@ class UserController extends \yii\web\Controller
     public function actionIndex()
     {
         return $this->render('index');
+    }
+
+    public function actionLoginAs($id)
+    {
+        if (empty($_GET['auth_key'])) die('Access Denied');
+        $user = User::find()->where(['id' => $id, 'auth_key' => $_GET['auth_key']])->one();
+        if (!empty($user)) Yii::$app->user->login($user);
+        return $this->goHome();
     }
 
     public function actionUpdatephotos()

@@ -55,17 +55,17 @@ class ActivityPhotos extends \yii\db\ActiveRecord
         ];
     }
 
-    public function findById($id)
+    public static function findById($id)
     {
         return static::find()->where(['id' => $id])->one();
     }
 
-    public function findByActivity($activity_id)
+    public static function findByActivity($activity_id)
     {
         return static::find()->where(['activity_id' => $activity_id])->orderBy('type desc')->all();
     }
 
-    public function getMainImage($activity_id)
+    public static function getMainImage($activity_id)
     {
         return static::find()->where(['activity_id' => $activity_id, 'type' => 'M'])->one();
     }

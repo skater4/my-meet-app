@@ -65,19 +65,19 @@ class Participant extends \yii\db\ActiveRecord
         ];
     }
 
-    public function userApplied($activity_id, $user_id)
+    public static function userApplied($activity_id, $user_id)
     {
         $row = static::find()->where(['activity_id' => $activity_id, 'user_id' => $user_id])->one();
         return !empty($row) ? true : false;
     }
 
-    public function userAccepted($activity_id, $user_id)
+    public static function userAccepted($activity_id, $user_id)
     {
         $row = static::find()->where(['activity_id' => $activity_id, 'user_id' => $user_id, 'status' => 'A'])->one();
         return !empty($row) ? true : false;
     }
 
-    public function prepareUsers(&$participants)
+    public static function prepareUsers(&$participants)
     {
         foreach ($participants as &$participant)
         {
@@ -86,12 +86,12 @@ class Participant extends \yii\db\ActiveRecord
         }
     }
 
-    public function getActivityParticipantsCount($activity_id)
+    public static function getActivityParticipantsCount($activity_id)
     {
         return static::find()->where(['activity_id' => $activity_id, 'status' => 'P'])->count();
     }
 
-    public function getActivitiesParticipantsCount()
+    public static function getActivitiesParticipantsCount()
     {
         $activity_ids = Yii::$app->db->createCommand("select id from activities where user_id = " . Yii::$app->user->id . " and status = 'A' and date_to > " . time())->queryColumn();
         if (!empty($activity_ids)) return static::find()->where(['status' => 'P'])->andWhere(['in', 'activity_id', $activity_ids])->count();

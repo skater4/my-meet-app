@@ -44,7 +44,7 @@ class ActivityCategories extends \yii\db\ActiveRecord
         ];
     }
 
-    public function findCategories($params = [])
+    public static function findCategories($params = [])
     {
         $res = [];
         if (!empty($params['get_empty']) && $params['get_empty']) $res[] = '---';
@@ -57,7 +57,7 @@ class ActivityCategories extends \yii\db\ActiveRecord
         return $res;
     }
 
-    public function getCategoryName($id)
+    public static function getCategoryName($id)
     {
         $category = self::find()->where(['id' => $id])->one();
         if (empty($category)) return '';

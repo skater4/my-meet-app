@@ -53,7 +53,8 @@ AppAsset::register($this);
     if (!Yii::$app->user->isGuest) {
         $menuItems []=['label' => Yii::t('common', 'Поиск движа'), 'url' => Url::to(['/activities/index', 'page' => 1])];
         $menuItems []=['label' => Yii::t('common', 'Мои участия'), 'url' => Url::to(['/myparticipation/index', 'page' => 1])];
-        $new_messages = Messages::getNewMessagesCount(Yii::$app->user->id);
+        $new_messages = new Messages();
+        $new_messages = $new_messages->getNewMessagesCount(Yii::$app->user->id);
         if ($new_messages > 0) $menuItems []=['label' => Yii::t('common', 'Новые сообщения') . " (" . $new_messages . ")", 'url' => Url::to(['/newmessages/index', 'page' => 1])];
         $menuItems []=['label' => Yii::t('common', 'Мои движухи'), 'url' => Url::to(['/myactivity/index', 'page' => 1])];
         $incoming_requests = Participant::getActivitiesParticipantsCount();

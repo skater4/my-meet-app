@@ -15,7 +15,7 @@ return [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
-            'baseUrl' => '/yii/admin',
+            'baseUrl' => '/admin',
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -48,6 +48,17 @@ return [
                 '' => 'site/index',
                 'login' => 'site/login',
                 'logout' => 'site/logout',
+                '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
+            ],
+        ],
+        'urlManagerFrontend' => [
+            'class' => 'codemix\localeurls\UrlManager',
+            'baseUrl' => '',
+            'enablePrettyUrl' => true,
+            'enableStrictParsing' => true,
+            'showScriptName' => false,
+            'rules' => [
+                '' => 'site/index',
                 '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
             ],
         ],

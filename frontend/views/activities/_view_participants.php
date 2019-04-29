@@ -9,6 +9,7 @@ use yii\helpers\Url;
     <div class="participants-table">
         <?php $form = ActiveForm::begin(); ?>
         <?php foreach ($participants as $participant):?>
+        <?if (empty($participant->user)) continue;?>
             <div class="row">
                 <a href="<?=Url::to(['user/view', 'id' => $participant->user->id])?>">
                     <div class="col-lg-1">

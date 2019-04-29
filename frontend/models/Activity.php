@@ -78,7 +78,7 @@ class Activity extends \yii\db\ActiveRecord
         ];
     }
 
-    public function findById($id, $user_id = 0)
+    public static function findById($id, $user_id = 0)
     {
         $params = [
             'id' => $id
@@ -87,21 +87,16 @@ class Activity extends \yii\db\ActiveRecord
         return static::find()->where($params)->one();
     }
 
-    public function findByUser($user_id)
+    public static function findByUser($user_id)
     {
         return static::find()->where(['user_id' => $user_id])->all();
     }
 
-    public function prepareActivity(&$activity)
+    public static function prepareActivity(&$activity)
     {
         $activity->date_from = date('d.m.Y H:i:s', $activity->date_from);
         $activity->date_to = date('d.m.Y H:i:s', $activity->date_to);
 
         $activity->images = ActivityPhotos::findByActivity($activity['id']);
-    }
-
-    public function getActivityIds($user_id)
-    {
-
     }
 }

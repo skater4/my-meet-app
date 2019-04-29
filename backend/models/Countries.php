@@ -54,7 +54,7 @@ class Countries extends ActiveRecord
         ];
     }
 
-    public static function getCountries()
+    public function getCountries()
     {
         $res = [];
         $field = 'country';
@@ -66,7 +66,7 @@ class Countries extends ActiveRecord
         return $res;
     }
 
-    public static function getCities($country)
+    public function getCities($country)
     {
         $res = [];
         $field = 'city';
@@ -79,7 +79,7 @@ class Countries extends ActiveRecord
         return $res;
     }
 
-    public static function getByCityId($city_id)
+    public function getByCityId($city_id)
     {
         return static::find()->where(['id' => $city_id])->one();
     }

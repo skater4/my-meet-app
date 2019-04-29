@@ -7,7 +7,7 @@ use yii\base\Model;
 use common\models\User;
 
 
-class ProfileUpdateForm extends Model
+class ProfileUpdateForm extends User
 {
     public $firstname;
     public $lastname;

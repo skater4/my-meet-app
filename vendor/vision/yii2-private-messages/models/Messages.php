@@ -76,12 +76,12 @@ class Messages extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getNewMessagesCount($user_id)
+    public static function getNewMessagesCount($user_id)
     {
         return static::find()->where(['whom_id' => $user_id, 'status' => 1])->count();
     }
 
-    public function getRelatedNewMessagesCount($from_user, $to_user)
+    public static function getRelatedNewMessagesCount($from_user, $to_user)
     {
         return static::find()->where(['from_id' => $from_user, 'whom_id' => $to_user, 'status' => 1])->count();
     }

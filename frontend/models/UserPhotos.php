@@ -70,12 +70,12 @@ class UserPhotos extends \yii\db\ActiveRecord
         return static::find()->where(['user_id' => $user_id, 'type' => 'M'])->one();
     }
 
-    public function getAvatar($user_id)
+    public static function getAvatar($user_id)
     {
         return static::find()->where(['user_id' => $user_id, 'type' => "M"])->one();
     }
 
-    public function getAvatarImagePath($user_id)
+    public static function getAvatarImagePath($user_id)
     {
         $avatar = static::find()->where(['user_id' => $user_id, 'type' => "M"])->one();
         if (!empty($avatar)) $avatar = $avatar->thumbnail_path;
