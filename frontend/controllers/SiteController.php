@@ -90,7 +90,9 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            Yii::$app->session->setFlash('success', Yii::t('common', 'Вы успешно авторизовались'));
+            if (!empty($_GET['return_url'])) return Yii::$app->getResponse()->redirect($_GET['return_url']);
+            else return $this->goBack();
         } else {
             $model->password = '';
 

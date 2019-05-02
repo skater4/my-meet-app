@@ -98,4 +98,6 @@ return [
     'Сначала заполните свои данные' => 'Fill your data first',
     'Не зарегистрированы?' => 'Not registered?',
     'Поделяться ссылкой' => 'Repost',
+    'Войдите в систему для подачи заявки' => 'Log in to apply',
+    'Вы успешно авторизовались' => 'You have been successfully logged in',
 ];

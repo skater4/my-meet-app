@@ -24,23 +24,25 @@ $this->params['breadcrumbs'][] = ['label' => $model->name];
 <a class="btn btn-primary" onclick="javascript:history.back();"><?=Yii::t('common', 'Назад')?></a>
 <?php
 if (Yii::$app->user->id != $model->user_id && !Participant::userApplied($model->id, Yii::$app->user->id) && !Yii::$app->user->isGuest):
-Modal::begin([
-    'header' => Yii::t('common', 'Подать заявку'),
-    'toggleButton' => ['label' => Yii::t('common', 'Подать заявку'), 'class' => 'btn btn-primary']
-]);
-?>
-<?= $form->field($new_participant, 'activity_id')->hiddenInput(['readonly' => true, 'value' => $model->id])->label(false) ?>
-<?= $form->field($new_participant, 'user_id')->hiddenInput(['readonly' => true, 'value' => Yii::$app->user->id])->label(false) ?>
-<?= $form->field($new_participant, 'status')->hiddenInput(['readonly' => true, 'value' => "P"])->label(false) ?>
-<?= $form->field($new_participant, 'message')->textarea(['rows' => 3])?>
-<div class="form-group">
-    <?= Html::submitButton(Yii::t('common', 'Отправить'), ['class' => 'btn btn-primary']) ?>
-</div>
-<?php
-Modal::end();
+    Modal::begin([
+        'header' => Yii::t('common', 'Подать заявку'),
+        'toggleButton' => ['label' => Yii::t('common', 'Подать заявку'), 'class' => 'btn btn-primary']
+    ]);
+    ?>
+    <?= $form->field($new_participant, 'activity_id')->hiddenInput(['readonly' => true, 'value' => $model->id])->label(false) ?>
+    <?= $form->field($new_participant, 'user_id')->hiddenInput(['readonly' => true, 'value' => Yii::$app->user->id])->label(false) ?>
+    <?= $form->field($new_participant, 'status')->hiddenInput(['readonly' => true, 'value' => "P"])->label(false) ?>
+    <?= $form->field($new_participant, 'message')->textarea(['rows' => 3])?>
+    <div class="form-group">
+        <?= Html::submitButton(Yii::t('common', 'Отправить'), ['class' => 'btn btn-primary']) ?>
+    </div>
+    <?php
+    Modal::end();
+else:
+    echo '<a class="btn btn-primary" href="' . Url::to(['site/login?return_url=' . Url::current()]) . '">' . Yii::t('common', 'Войдите в систему для подачи заявки') . '</a>';
 endif;
+ActiveForm::end();
 ?>
-<?php ActiveForm::end(); ?>
 
 <br><br>
 
