@@ -22,36 +22,9 @@ class ActivitiesController extends \yii\web\Controller
         ];
     }
 
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'allow' => false,
-                        'roles' => ['?'],
-                    ],
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-                'denyCallback' => function ($rule, $action) {
-                    return $this->redirect(Url::to(['site/login']));
-                }
-            ],
-        ];
-    }
-
     public function actionIndex()
     {
         $user = User::find()->where(['id' => Yii::$app->user->id])->one();
-        if (empty($user->firstname))
-        {
-            Yii::$app->session->setFlash('error', Yii::t('common', 'Сначала заполните свои данные'));
-            return Yii::$app->getResponse()->redirect(['user/update']);
-        }
         $condition = [];
         if (!empty(Yii::$app->request->get()['Activity']['city_id'])) $city_id = Yii::$app->request->get()['Activity']['city_id'];
         if (!empty($city_id)) $condition['city_id'] = $city_id;
@@ -65,7 +38,7 @@ class ActivitiesController extends \yii\web\Controller
         if (!empty($_cond['date_from'])) $query = $query->andWhere(['>=', 'date_from', strtotime($_cond['date_from'])]);
         if (!empty($_cond['date_to'])) $query = $query->andWhere(['<=', 'date_to', strtotime($_cond['date_to'])]);
         else $query = $query->andWhere(['>', 'date_to', time()]);
-        $query = $query->andWhere(['!=', 'user_id', Yii::$app->user->id]);
+        if (!Yii::$app->user->isGuest) $query = $query->andWhere(['!=', 'user_id', Yii::$app->user->id]);
         $query = $query->orderBy('created desc');
         $countQuery = clone $query;
         $pages = new Pagination(['totalCount' => $countQuery->count()]);
@@ -109,6 +82,10 @@ class ActivitiesController extends \yii\web\Controller
             ];
         }
 
+        $main_image = ActivityPhotos::getMainImage($id);
+        if (empty($main_image)) $main_image = Yii::getAlias('@web/img/no_image.png');
+        else $main_image = $main_image->detailed_path;
+
         $participants = Participant::find()->where(['activity_id' => $id, 'status' => 'A']);
         $countQuery = clone $participants;
         $pages = new Pagination(['totalCount' => $countQuery->count()]);
@@ -125,6 +102,7 @@ class ActivitiesController extends \yii\web\Controller
             'participants' => $participants,
             'new_participant' => $new_participant,
             'images' => $output,
+            'main_image' => $main_image,
         ]);
     }
 

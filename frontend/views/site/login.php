@@ -24,6 +24,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'rememberMe')->checkbox() ?>
 
                 <div style="color:#999;margin:1em 0">
+                    <?=Yii::t('common', 'Не зарегистрированы?')?> <?= Html::a(Yii::t('common', 'Регистрация'), ['site/signup']) ?>.
+                    <br>
                     <?=Yii::t('common', 'Забыли пароль?')?> <?= Html::a(Yii::t('common', 'Сбросить'), ['site/request-password-reset']) ?>.
                     <br>
                     <?=Yii::t('common', 'Не пришло письмо на почту?')?> <?= Html::a(Yii::t('common', 'Выслать заново'), ['site/resend-verification-email']) ?>

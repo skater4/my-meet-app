@@ -52,6 +52,21 @@ use yii\helpers\Html;
                         </div>
                     </div>
                 </div>
+
+                <script src="https://vk.com/js/api/share.js?95"></script>
+                <!-- Put this script tag to the place, where the Share button will be -->
+                <script type="text/javascript">
+                document.write (VK.Share.button ({
+                    //url: '<?=Url::current();?>',
+                    //title: '<?=$model->name?>',
+                    //image: 'http://<?=Yii::$app->request->hostName . $main_image?>',
+                    noparse: false
+                },
+                {
+                    type: 'round',
+                    text: '<?=Yii::t('common', 'Поделиться ссылкой')?>'
+                }));
+                </script>
             </a>
         </div>
         <div class="row" style="padding-top: 10px;">

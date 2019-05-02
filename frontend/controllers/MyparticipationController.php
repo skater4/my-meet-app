@@ -45,11 +45,6 @@ class MyparticipationController extends \yii\web\Controller
     public function actionIndex()
     {
         $user = User::find()->where(['id' => Yii::$app->user->id])->one();
-        if (empty($user->firstname))
-        {
-            Yii::$app->session->setFlash('error', Yii::t('common', 'Сначала заполните свои данные'));
-            return Yii::$app->getResponse()->redirect(['user/update']);
-        }
         $activities = Activity::find()->where(['participants.status' => 'A', 'participants.user_id' => Yii::$app->user->id])->leftJoin('participants', 'activities.id = participants.activity_id');
 
         $countQuery = clone $activities;
