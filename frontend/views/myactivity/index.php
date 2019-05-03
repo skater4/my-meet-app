@@ -90,7 +90,7 @@ echo "<div class='row'>";?>
                     </a>
                     <div class="card-body">
                         <h5 class="card-title"><?=$activity->name?></h5>
-                        <p class="card-text"><?=$activity->description?></p>
+                        <div class="card-text"><?=$activity->description?></div>
                         <p class="card-text"><?=Yii::t('common', 'Начало')?> <?=$activity->date_from?></p>
                         <p class="card-text"><?=Yii::t('common', 'Окончание')?> <?=$activity->date_to?></p>
                         <p class="card-text"><?php
