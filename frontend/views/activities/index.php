@@ -97,7 +97,7 @@ echo "<div class='row'>";?>
                     <div class="card-body">
                         <h5 class="card-title"><?if ($activity->status == "D") echo "<b>" . Yii::t('common', 'Отменено') . "</b>"?></h5>
                         <h5 class="card-title"><?=$activity->name?></h5>
-                        <p class="card-text"><?=$activity->description?></p>
+                        <div class="card-text"><?=$activity->description?></div>
                         <p class="card-text"><?=Yii::t('common', 'Начало')?> <?=$activity->date_from?></p>
                         <p class="card-text"><?=Yii::t('common', 'Окончание')?> <?=$activity->date_to?></p>
                     </div>
