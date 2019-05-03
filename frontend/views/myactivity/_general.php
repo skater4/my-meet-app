@@ -5,13 +5,17 @@ use yii\helpers\Url;
 use yii\jui\DatePicker;
 use app\models\Countries;
 use app\models\ActivityCategories;
+use dosamigos\ckeditor\CKEditor;
 ?>
 
 <div class="row">
     <div class="col-lg-8">
         <?php $form = ActiveForm::begin(); ?>
         <?= $form->field($model, 'name') ?>
-        <?= $form->field($model, 'description')->textarea(['rows' => 3]) ?>
+        <?= $form->field($model, 'description')->widget(CKEditor::className(), [
+            'options' => ['rows' => 6],
+            'preset' => 'basic'
+        ]) ?>
         <?= $form->field($model, 'category_id')->dropDownList(
             ActivityCategories::findCategories()
         );
@@ -31,8 +35,14 @@ use app\models\ActivityCategories;
             Countries::getCities($model->country)
         );
         ?>
-        <?= $form->field($model, 'location')->textarea(['rows' => 3]) ?>
-        <?= $form->field($model, 'contacts')->textarea(['rows' => 3]) ?>
+        <?= $form->field($model, 'location')->widget(CKEditor::className(), [
+            'options' => ['rows' => 6],
+            'preset' => 'basic'
+        ]) ?>
+        <?= $form->field($model, 'contacts')->widget(CKEditor::className(), [
+            'options' => ['rows' => 6],
+            'preset' => 'basic'
+        ]) ?>
 
         <?= $form->field($model, 'date_from')->widget(\kartik\datetime\DateTimePicker::class, [
             //'value' => date('dd.mm.yyyy', time()),

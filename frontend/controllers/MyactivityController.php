@@ -18,6 +18,7 @@ use yii\web\View;
 use yii\helpers\Json;
 use yii\data\Pagination;
 use yii\filters\AccessControl;
+use app\components\Csc;
 
 class MyactivityController extends \yii\web\Controller
 {
@@ -161,7 +162,11 @@ class MyactivityController extends \yii\web\Controller
         $participants = [];
         $view = $this->getView();
         $model = Activity::findById($id, Yii::$app->user->id);
-        if (empty($model)) $model = new Activity();
+        if (empty($model))
+        {
+            if ($id == 0) $model = new Activity();
+            else throw new \yii\web\NotFoundHttpException(Yii::t('common', 'Движуха не найдена =('));
+        }
         $photos_model = new ActivityPhotos();
         if ($model->load(Yii::$app->request->post()))
         {
@@ -189,6 +194,12 @@ class MyactivityController extends \yii\web\Controller
                     ->limit($pages->limit)
                     ->all();
                 Participant::prepareUsers($participants);
+            }
+            else
+            {
+                $user = User::findIdentity(Yii::$app->user->id);
+                $model->country = $user->country;
+                $model->city_id = $user->city_id;
             }
         }
         if (empty($pages)) $pages = 0;
